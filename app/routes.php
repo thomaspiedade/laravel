@@ -29,3 +29,4 @@ Route::post('/register' , 'UserController@register');
 Route::get('/register-success', function(){
 		return View::make('register-success');
 });
+Route::get('/remove/{id}' , 'UserController@remove');

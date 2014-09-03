@@ -36,4 +36,8 @@ class User{
 		);
 
 	}
+	
+	public function delete( $id ){
+		$this->storage->where('id','=', $id)->delete();
+	}
 }

@@ -64,4 +64,9 @@ class UserController extends BaseController {
 		//Redirect to success
 		return Redirect::to('/register-success')->with('message', 'Cadastro efetuado com sucesso.');
 	}
+
+	public function remove( $id ){
+		$this->user->delete( $id );	
+		return Redirect::to('/list')->with('message', 'Usuário removido com sucesso.');	
+	}
 }
