@@ -9,6 +9,7 @@
 //namespace App\Controllers;
 //use App\Models\User;
 //use Illuminate\Routing\Controller;
+
 class UserController extends BaseController {
 
 	private $user;
@@ -18,8 +19,9 @@ class UserController extends BaseController {
 	}
 
 	public function show(){
-		//Get object array of users
-	 	$this->user->findAll();
+		//Get object array of users	 	
+		$users = $this->user->findAll();
+	 	return View::make('show', array( 'users' => $users ) );
 	}
 
 	public function register(){

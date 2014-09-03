@@ -25,7 +25,7 @@ class User{
 
 	public function insert( $data ){
 		$data['password'] = Hash::make($data['password']);
-		$this->storage->insert(
+		return $this->storage->insert(
 			array(
 				'name' 	    => $data['name'],
 				'email'	    => $data['email'],
@@ -38,6 +38,6 @@ class User{
 	}
 	
 	public function delete( $id ){
-		$this->storage->where('id','=', $id)->delete();
+		return $this->storage->where('id','=', $id)->delete();
 	}
 }
