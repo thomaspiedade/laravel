@@ -64,7 +64,51 @@ class UserController extends BaseController {
 		$this->user->insert($input);
 
 		//Redirect to success
-		return Redirect::to('/register-success')->with('message', 'Cadastro efetuado com sucesso.');
+		return Redirect::to('/list')->with('message', 'Cadastro efetuado com sucesso.');
+	}
+
+	public function edit( $id ){
+
+		//If not post show user
+		if(!Request::isMethod('post')){ 
+	 		return View::make('edit', array( 'user' => $this->user->findById( $id ) ) );
+		}
+
+		//Get Input data
+		$input = Input::all();
+
+		//Fields to Validate		
+		$post = array(
+		    	'name' 					=> $input['name'],
+				'email' 				=> $input['email'],
+				'password' 				=> $input['password'],
+				'password_confirmation' => $input['password_confirmation']
+		);	
+
+		//Validation rules
+		$rules = array(
+			'name'      => 'required',
+			'email'     => 'required|email',
+			'password'  => 'required|alpha_num|between:5,12|confirmed',
+			'password_confirmation' => 'required|alpha_num|between:5,12',
+		);
+		
+		//Validate make
+		$validator = Validator::make($post, $rules);
+
+		//Validate Data With Rules
+		if( !$validator->passes() ){
+			//Back if not validate passes
+			 return Redirect::back()
+	            ->withErrors($validator)
+	            ->withInput();	
+		}
+
+		//Persistence data;
+		$this->user->update($id, $input);
+
+		//Redirect to success
+		return Redirect::to('/list')->with('message', 'Usuário atualizado com sucesso.');
 	}
 
 	public function remove( $id ){

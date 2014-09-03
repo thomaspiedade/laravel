@@ -30,3 +30,5 @@ Route::get('/register-success', function(){
 		return View::make('register-success');
 });
 Route::get('/remove/{id}' , 'UserController@remove');
+Route::get('/edit/{id}' , 'UserController@edit');
+Route::post('/edit/{id}' , 'UserController@edit');

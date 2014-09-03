@@ -16,6 +16,9 @@
 		.users {
 			position: absolute;
 		}
+		.message{
+			color: #8CC05B !important;
+		}
 
 		a, a:visited {
 			text-decoration:none;
@@ -29,6 +32,11 @@
 <body>
 	<div >
 		<h1>Usuários Cadastrados</h1>
+			@if(Session::get('message') != '')
+			<div class="message">
+				{{Session::get('message')}}
+			</div>
+			@endif
 			<div class="users">
 		      <ul>
 		          @foreach($users as $user)

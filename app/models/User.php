@@ -23,8 +23,11 @@ class User{
 		return $this->storage->get();
 	}
 
+	public function findById( $id ){
+		return $this->storage->where('id','=', $id)->first();;
+	}
+
 	public function insert( $data ){
-		$data['password'] = Hash::make($data['password']);
 		return $this->storage->insert(
 			array(
 				'name' 	    => $data['name'],
@@ -36,7 +39,20 @@ class User{
 		);
 
 	}
-	
+
+	public function update( $id, $data ){		
+		return $this->storage->where('id', '=', $id)->update(
+			array(
+				'name' 	    => $data['name'],
+				'email'	    => $data['email'],
+				'level'     => $this->level,
+				'password'  => Hash::make($data['password']),
+				'updated_at'=> date('Y-m-d h:i:s')
+			)
+		);
+
+	}
+
 	public function delete( $id ){
 		return $this->storage->where('id','=', $id)->delete();
 	}
