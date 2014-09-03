@@ -21,17 +21,11 @@ Route::get('/home', function()
 	return View::make('home');
 });
 
-/* Contact Routes  */
-Route::get('/contato'       , 'ContactController@index');
-Route::post('/contato'      , 'ContactController@send');
-Route::get('/contato/show/' , 'ContactController@show');
 
-/* Users Routes */
-
-Route::get('/cadastro' , 'UserController@signUp');
-Route::post('/cadastro' , 'UserController@signUpPost');
-
+# User Routes
 Route::get('/list' , 'UserController@show');
-
 Route::get('/register' , 'UserController@register');
-
+Route::post('/register' , 'UserController@register');
+Route::get('/register-success', function(){
+		return View::make('register-success');
+});

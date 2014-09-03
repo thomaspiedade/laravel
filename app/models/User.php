@@ -11,9 +11,9 @@
 //use Illuminate\Auth\Reminders\RemindableInterface;
 
 class User{
-
 	private $table = 'users';
 	private $storage;
+	private $level = 'user';
 
 	public function __construct(){
 		$this->storage =  DB::table( $this->table );
@@ -24,6 +24,16 @@ class User{
 	}
 
 	public function insert( $data ){
+		$data['password'] = Hash::make($data['password']);
+		$this->storage->insert(
+			array(
+				'name' 	    => $data['name'],
+				'email'	    => $data['email'],
+				'level'     => $this->level,
+				'password'  => Hash::make($data['password']),
+				'created_at'=> date('Y-m-d h:i:s')
+			)
+		);
 
 	}
 }
