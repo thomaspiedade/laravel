@@ -47,7 +47,6 @@ class UserController extends BaseController {
 					   ->withErrors($validator)
 					   ->withInput();			
 		}
-
 		//Persistence data;
 		$this->user->insert($input));
 
