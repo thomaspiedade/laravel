@@ -11,8 +11,8 @@
 //use Illuminate\Auth\Reminders\RemindableInterface;
 
 class User{
-	private $table = 'users';
-	private $storage;
+	protected $table = 'users';
+	protected $storage;
 	private $level = 'user';
 
 	public function __construct(){

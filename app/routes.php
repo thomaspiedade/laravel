@@ -24,11 +24,16 @@ Route::get('/home', function()
 
 # User Routes
 Route::get('/list' , 'UserController@show');
-Route::get('/register' , 'UserController@register');
-Route::post('/register' , 'UserController@register');
-Route::get('/register-success', function(){
-		return View::make('register-success');
+Route::get('/register', function(){
+		return View::make('register');
 });
+Route::post('/register' , 'UserController@register');
 Route::get('/remove/{id}' , 'UserController@remove');
 Route::get('/edit/{id}' , 'UserController@edit');
 Route::post('/edit/{id}' , 'UserController@edit');
+
+# Admin Routes
+Route::get('admin/register', function(){
+		return View::make('admin-register');
+});
+Route::post('admin/register' , 'AdminController@register');
